@@ -9,6 +9,7 @@
 class StandaloneXHost : public XHostInterface {
 public:
     int XPluginStart();
+    void XPluginStop();
 
     std::string GetRootPath() override;
 

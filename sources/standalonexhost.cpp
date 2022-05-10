@@ -24,6 +24,13 @@ int StandaloneXHost::XPluginStart() {
     return 1;
 }
 
+void StandaloneXHost::XPluginStop() {
+    for (auto item : m_jsnexus) {
+        delete item;
+    }
+    m_jsnexus.clear();
+}
+
 std::string StandaloneXHost::GetRootPath() {
     return m_rootPath;
 }

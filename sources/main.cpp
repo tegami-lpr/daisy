@@ -11,13 +11,7 @@ int main() {
 
     xh->XPluginStart();
 
-//    auto nexus = new JSNexus(xh);
-//    nexus->ExecFile("test.js");
-//
-//    nexus->Update();
-//
-//    delete nexus;
-
+    xh->XPluginStop();
     delete xh;
 
     return 0;
