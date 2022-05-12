@@ -5,6 +5,8 @@
 #include <mujs.h>
 #include <string>
 
+class XPDataAccess;
+
 class JSNexus {
 public:
     explicit JSNexus(XHostInterface *xhost);
@@ -17,6 +19,11 @@ public:
     void OnAirportLoaded();
     void OnPlaneCrashed();
 
+    js_State *GetJSState();
+    XPDataAccess *GetXPDataAccessObject();
+    XHostInterface *GetXHost();
+
+    static JSNexus* get_nexus_ptr(js_State *J);
 private:
     void defineGlobalObjects();
     void callEventFunc(const std::string& funcName);
@@ -27,12 +34,9 @@ private:
 
     static void js_import_js(js_State *J);
 
-    static JSNexus* get_nexus_ptr(js_State *J);
-
-
-
     js_State *m_jsState;
     XHostInterface *m_xhost;
+    XPDataAccess *m_XPDataAccessObject;
 };
 
 

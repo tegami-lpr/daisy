@@ -2,7 +2,7 @@
 #define STANDALONEXHOST_H
 
 #include "xhostinterface.h"
-#include "jsnexus.h"
+#include "jsnexus/jsnexus.h"
 #include <filesystem>
 #include <list>
 

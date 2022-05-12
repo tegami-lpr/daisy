@@ -1,6 +1,6 @@
 #include <string>
 
-#include "jsnexus.h"
+#include "jsnexus/jsnexus.h"
 #include "standalonexhost.h"
 #include "logadapter.h"
 

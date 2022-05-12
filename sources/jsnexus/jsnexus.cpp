@@ -1,5 +1,7 @@
 #include "jsnexus.h"
 #include "js_support.h"
+#include "xpdataaccess.h"
+
 #include <string>
 #include <filesystem>
 
@@ -18,10 +20,25 @@ JSNexus::JSNexus(XHostInterface *xhost) {
 
     //Creating global functions
     defineGlobalObjects();
+
+    m_XPDataAccessObject = new XPDataAccess(this);
+    m_XPDataAccessObject->CreateXPDObject();
 }
 
 JSNexus::~JSNexus() {
     js_freestate(m_jsState);
+}
+
+js_State *JSNexus::GetJSState() {
+    return m_jsState;
+}
+
+XPDataAccess *JSNexus::GetXPDataAccessObject() {
+    return m_XPDataAccessObject;
+}
+
+XHostInterface *JSNexus::GetXHost() {
+    return m_xhost;
 }
 
 bool JSNexus::ExecFile(const std::string& fileName) {
@@ -94,7 +111,8 @@ void JSNexus::defineGlobalObjects() {
     //'syslog' function for logging messages to XP log
     js_newcfunction(m_jsState, js_syslog, "syslog", 1);
     js_defproperty(m_jsState, -2, "syslog", JS_READONLY);
-    js_setglobal(m_jsState, "global");
+    js_defglobal(m_jsState, "global", JS_READONLY);
+
 
 
 
